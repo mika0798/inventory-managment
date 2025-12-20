@@ -1,4 +1,4 @@
-package com.project.code.Model;
+package com.project.code.dto;
 
 
 public class PurchaseProductDTO {
@@ -8,7 +8,6 @@ public class PurchaseProductDTO {
     private Integer quantity;
     private Double total;
 
-    // Getters and Setters
 
     public Long getId() {
         return id;

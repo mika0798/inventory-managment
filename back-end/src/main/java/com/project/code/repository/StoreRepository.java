@@ -1,4 +1,4 @@
-package com.project.code.Repo;
+package com.project.code.repository;
 
 public interface StoreRepository {
 // 1. Add the repository interface:

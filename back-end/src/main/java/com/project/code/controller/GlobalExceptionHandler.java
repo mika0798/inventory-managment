@@ -1,4 +1,4 @@
-package com.project.code.Controller;
+package com.project.code.controller;
 
 
 public class GlobalExceptionHandler {

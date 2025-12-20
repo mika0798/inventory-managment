@@ -1,4 +1,4 @@
-package com.project.code.Service;
+package com.project.code.service;
 
 
 public class ServiceClass {

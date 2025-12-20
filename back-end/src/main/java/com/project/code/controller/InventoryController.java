@@ -1,4 +1,4 @@
-package com.project.code.Controller;
+package com.project.code.controller;
 
 public class InventoryController {
 // 1. Set Up the Controller Class:
