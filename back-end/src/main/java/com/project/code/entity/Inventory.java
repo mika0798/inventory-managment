@@ -2,6 +2,10 @@ package com.project.code.entity;
 
 
 public class Inventory {
+    private long id;
+    private Product product;
+    private Store store;
+    private Integer stockLevel;
    // 1. Add 'id' field:
 //    - Type: private long 
 //    - This field will represent the unique identifier for the inventory entry.

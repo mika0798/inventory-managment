@@ -1,7 +1,15 @@
 package com.project.code.entity;
 
 
+import java.time.LocalDateTime;
+
 public class OrderDetails {
+    private long id;
+    private Customer customer;
+    private Store store;
+    private Double totalPrice;
+    private LocalDateTime date;
+    private OrderItem orderItem;
 
 // 1. Add 'id' field:
 //    - Type: private Long 

@@ -2,6 +2,10 @@ package com.project.code.entity;
 
 
 public class Store {
+    private long id;
+    private String name;
+    private String address;
+    private Inventory inventory;
 
 // 1. Add 'id' field:
 //    - Type: private long 

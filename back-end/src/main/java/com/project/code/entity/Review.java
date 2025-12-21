@@ -1,6 +1,11 @@
 package com.project.code.entity;
 
 public class Review {
+    private long id;
+    private long productId;
+    private long storeId;
+    private Integer rating;
+    private String comment;
 
 // 1. Add 'customerId' field:
 //    - Type: private Long

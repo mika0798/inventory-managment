@@ -1,6 +1,12 @@
 package com.project.code.entity;
 
 public class OrderItem {
+    private long id;
+    private OrderDetails orderDetails;
+    private Product product;
+    private Integer quantity;
+    private Double price;
+
 
 // 1. Add 'id' field:
 //    - Type: private Long

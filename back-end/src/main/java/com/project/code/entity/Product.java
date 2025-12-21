@@ -2,6 +2,13 @@ package com.project.code.entity;
 
 
 public class Product {
+    private long id;
+    private String name;
+    private String field;
+    private Double price;
+    private String sku;
+    private Inventory inventory;
+
 
 // 1. Add 'id' field:
 //    - Type: private long 
