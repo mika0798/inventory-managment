@@ -33,7 +33,7 @@ public class OrderDetails {
     private Double totalPrice;
     private LocalDateTime date;
 
-    @OneToMany(mappedBy= "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy= "orderDetails", fetch = FetchType.LAZY)
     @JsonManagedReference("order-item")
     private List<OrderItem> orderItems;
 
