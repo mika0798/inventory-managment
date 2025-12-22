@@ -1,6 +1,7 @@
 package com.project.code.service;
 
 import com.project.code.entity.Store;
+import com.project.code.exception.ResourceAlreadyExistsException;
 import com.project.code.exception.StoreNotFoundException;
 import com.project.code.repository.ProductRepository;
 import com.project.code.repository.StoreRepository;
@@ -25,4 +26,12 @@ public class StoreService {
     public boolean storeExists(Long id){
         return storeRepository.existsById(id);
     }
+
+    public Store saveStore(Store store){
+        if (storeRepository.existByNameIgnoreCase(store.getName())) {
+            throw new ResourceAlreadyExistsException("Store already exists");
+        }
+        return storeRepository.save(store);
+    }
+
 }
