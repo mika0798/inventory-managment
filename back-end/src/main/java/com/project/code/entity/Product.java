@@ -26,7 +26,7 @@ public class Product {
     private String name;
 
     @NotNull(message="Field cannot be null")
-    private String field;
+    private String category;
 
     @NotNull(message="Sku cannot be null")
     private Double price;
@@ -34,13 +34,13 @@ public class Product {
     @NotNull(message="Sku cannot be null")
     private String sku;
 
-    @OneToMany(mappedBy="product")
+    @OneToMany(mappedBy="product", fetch = FetchType.LAZY)
     @JsonManagedReference("product-inventory")
     private List<Inventory> inventory;
 
-    public Product(String name, String field, Double price, String sku) {
+    public Product(String name, String category, Double price, String sku) {
         this.name = name;
-        this.field = field;
+        this.category = category;
         this.price = price;
         this.sku = sku;
     }
