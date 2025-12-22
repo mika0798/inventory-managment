@@ -1,34 +1,54 @@
 package com.project.code.repository;
 
 
-public interface InventoryRepository {
-// 1. Add the repository interface:
-//    - Extend JpaRepository<Inventory, Long> to inherit basic CRUD functionality.
-//    - This allows the repository to perform operations like save, delete, update, and find without having to implement these methods manually.
+import com.project.code.entity.Inventory;
+import com.project.code.entity.Product;
+import com.project.code.entity.Store;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-// Example: public interface InventoryRepository extends JpaRepository<Inventory, Long> {}
+import java.util.List;
 
-// 2. Add custom query methods:
-//    - **findByProductIdandStoreId**:
-//      - This method will allow you to find an inventory record by its product ID and store ID.
-//      - Return type: Inventory
-//      - Parameters: Long productId, Long storeId
-      
-// Example: public Inventory findByProductIdandStoreId(Long productId, Long storeId);
+public interface InventoryRepository extends JpaRepository<Inventory,Long> {
+    // ===== CORE =====
+    List<Inventory> findByStoreId(Long storeId);
+    Inventory findByProductIdAndStoreId(Long productId, Long storeId);
+    void deleteByProductId(Long productId);
 
-//    - **findByStore_Id**:
-//      - This method will allow you to find a list of inventory records for a specific store.
-//      - Return type: List<Inventory>
-//      - Parameter: Long storeId
-      
-// Example: public List<Inventory> findByStore_Id(Long storeId);
+    // ===== STORE to PRODUCTS =====
+    @Query(
+        """
+        SELECT i.product FROM Inventory i WHERE i.store.id = :storeId
+        """)
+    List<Product> findProductsByStoreId(Long storeId);
 
-//    - **deleteByProductId**:
-//      - This method will allow you to delete all inventory records related to a specific product ID.
-//      - Return type: void
-//      - Parameter: Long productId
-//      - Use @Modifying and @Transactional annotations to ensure the database is modified correctly.
+    @Query("""
+        SELECT i.product FROM Inventory i WHERE i.store.id = :storeId
+        AND i.product.category = :category
+        """)
+    List<Product> findProductsByStoreIdAndCategory(
+            Long storeId,
+            String category
+    );
 
+    @Query("""
+        SELECT i.product FROM Inventory i WHERE i.store.id = :storeId
+        AND LOWER(i.product.name) LIKE LOWER(CONCAT('%', :name, '%'))
+        """)
+    List<Product> searchProductsInStore(
+            Long storeId,
+            String name
+    );
 
+    @Query("""
+        SELECT i.product FROM Inventory i WHERE i.store.id = :storeId
+        AND LOWER(i.product.name) LIKE LOWER(CONCAT('%', :name, '%'))
+        AND i.product.category = :category
+    """)
+    List<Product> searchProductsInStoreByNameAndCategory(
+            Long storeId,
+            String name,
+            String category
+    );
 
 }
