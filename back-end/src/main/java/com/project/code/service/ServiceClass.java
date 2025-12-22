@@ -3,6 +3,7 @@ package com.project.code.service;
 
 import com.project.code.entity.Inventory;
 import com.project.code.entity.Product;
+import com.project.code.exception.InventoryNotFoundException;
 import com.project.code.repository.InventoryRepository;
 import com.project.code.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,28 @@ public class ServiceClass {
     }
 
     public boolean validateInventory(Inventory inventory) {
-        return true;
+        return inventoryRepository.findByProductIdAndStoreId(
+                inventory.getProduct().getId(),
+                inventory.getStore().getId()
+                )
+                .isEmpty();
     }
 
     public boolean validateProduct(Product product) {
-        return true;
+        return productRepository
+                .findByNameIgnoreCase(product.getName())
+                .isEmpty();
     }
 
     public boolean ValidateProductId(long id) {
-        return true;
+        return productRepository.findById(id).isPresent();
     }
 
     public Inventory getInventoryId(Inventory inventory) {
-        Inventory result = inventoryRepository.findByProductIdAndStoreId(inventory.getProduct().getId(),inventory.getStore().getId());
-        return result;
+        return inventoryRepository.findByProductIdAndStoreId(
+                inventory.getProduct().getId(),
+                inventory.getStore().getId())
+                .orElseThrow(() -> new InventoryNotFoundException("Cannot find such inventory"));
+
     }
 }
