@@ -9,14 +9,14 @@ public class ProductController {
 // 2. Autowired Dependencies:
 //    - Inject the following dependencies via `@Autowired`:
 //        - `ProductRepository` for CRUD operations on products.
-//        - `ServiceClass` for product validation and business logic.
+//        - `ValidateService` for product validation and business logic.
 //        - `InventoryRepository` for managing the inventory linked to products.
 
 
 // 3. Define the `addProduct` Method:
 //    - Annotate with `@PostMapping` to handle POST requests for adding a new product.
 //    - Accept `Product` object in the request body.
-//    - Validate product existence using `validateProduct()` in `ServiceClass`.
+//    - Validate product existence using `validateProduct()` in `ValidateService`.
 //    - Save the valid product using `save()` method of `ProductRepository`.
 //    - Catch exceptions (e.g., `DataIntegrityViolationException`) and return appropriate error message.
 
@@ -56,7 +56,7 @@ public class ProductController {
 
 // 9. Define the `deleteProduct` Method:
 //    - Annotate with `@DeleteMapping("/{id}")` to handle DELETE requests for removing a product by its ID.
-//    - Validate product existence using `ValidateProductId()` in `ServiceClass`.
+//    - Validate product existence using `ValidateProductId()` in `ValidateService`.
 //    - Remove product from `Inventory` first using `deleteByProductId(id)` in `InventoryRepository`.
 //    - Remove product from `Product` using `deleteById(id)` in `ProductRepository`.
 //    - Return a success message with key `message` indicating product deletion.

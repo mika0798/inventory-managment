@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServiceClass {
+public class ValidateService {
     private final InventoryRepository inventoryRepository;
     private final ProductRepository productRepository;
 
     @Autowired
-    public ServiceClass(InventoryRepository inventoryRepository,ProductRepository productRepository) {
+    public ValidateService(InventoryRepository inventoryRepository, ProductRepository productRepository) {
         this.inventoryRepository = inventoryRepository;
         this.productRepository=productRepository;
     }

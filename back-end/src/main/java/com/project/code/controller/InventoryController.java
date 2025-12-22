@@ -10,7 +10,7 @@ public class InventoryController {
 //    - Autowire necessary repositories and services:
 //      - `ProductRepository` will be used to interact with product data (i.e., finding, updating products).
 //      - `InventoryRepository` will handle CRUD operations related to the inventory.
-//      - `ServiceClass` will help with the validation logic (e.g., validating product IDs and inventory data).
+//      - `ValidateService` will help with the validation logic (e.g., validating product IDs and inventory data).
 
 
 // 3. Define the `updateInventory` Method:
