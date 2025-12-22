@@ -8,11 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface InventoryRepository extends JpaRepository<Inventory,Long> {
     // ===== CORE =====
     List<Inventory> findByStoreId(Long storeId);
-    Inventory findByProductIdAndStoreId(Long productId, Long storeId);
+    Optional<Inventory> findByProductIdAndStoreId(Long productId, Long storeId);
     void deleteByProductId(Long productId);
 
     // ===== STORE to PRODUCTS =====
