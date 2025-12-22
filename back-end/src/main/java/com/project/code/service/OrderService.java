@@ -85,7 +85,7 @@ public class OrderService {
                     .orElseThrow(() -> new ProductNotFoundException("Product not found"));
             purchasedItem.setProduct(theProduct);
             purchasedItem.setQuantity(productRequest.getQuantity());
-            purchasedItem.setSubTotal(productRequest.getPrice()*productRequest.getQuantity());
+            purchasedItem.setPrice(productRequest.getPrice()*productRequest.getQuantity());
             orderItemRepository.save(purchasedItem);
         }
     }
