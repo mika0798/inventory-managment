@@ -1,6 +1,7 @@
 package com.project.code.controller;
 
 import com.project.code.dto.ApiResponse;
+import com.project.code.dto.PlaceOrderRequest;
 import com.project.code.entity.Store;
 import com.project.code.repository.StoreRepository;
 import com.project.code.service.OrderService;
@@ -49,5 +50,16 @@ public class StoreController {
                 "Store",
                 savedStore);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @Operation(summary="Add an order",description="Place new order")
+    @PostMapping("/placeOrder")
+    public ResponseEntity<ApiResponse<PlaceOrderRequest>> placeOrder(@RequestBody PlaceOrderRequest orderRequest) {
+        orderService.saveOrder(orderRequest);
+        ApiResponse<PlaceOrderRequest> response = new ApiResponse<>(
+                "Success",
+                "Order has been placed",
+                orderRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
