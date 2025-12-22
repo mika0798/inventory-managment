@@ -3,6 +3,7 @@ package com.project.code.service;
 import com.project.code.dto.PlaceOrderRequest;
 import com.project.code.dto.PurchaseProductRequest;
 import com.project.code.entity.*;
+import com.project.code.exception.InventoryNotFoundException;
 import com.project.code.exception.ProductNotFoundException;
 import com.project.code.exception.StoreNotFoundException;
 import com.project.code.repository.*;
@@ -69,10 +70,12 @@ public class OrderService {
             OrderItem purchasedItem = new OrderItem();
 
             // Update inventory
-            Inventory inventory = inventoryRepository.findByProductIdAndStoreId(
+            Inventory inventory = inventoryRepository
+                    .findByProductIdAndStoreId(
                     productRequest.getId(),
                     store.getId()
-            );
+                    ).orElseThrow(() -> new InventoryNotFoundException("Inventory not found"));
+
             inventory.setStockLevel(inventory.getStockLevel() - productRequest.getQuantity());
 
             // Save purchased items
