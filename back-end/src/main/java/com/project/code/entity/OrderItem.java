@@ -31,13 +31,13 @@ public class OrderItem {
     private Integer quantity;
 
     @NotNull(message="Price cannot be null")
-    private Double price;
+    private Double subTotal;
 
-    public OrderItem(OrderDetails orderDetails, Product product, Integer quantity, Double price) {
+    public OrderItem(OrderDetails orderDetails, Product product, Integer quantity, Double subTotal) {
         this.orderDetails = orderDetails;
         this.product = product;
         this.quantity = quantity;
-        this.price = price;
+        this.subTotal = subTotal;
     }
 
 }
