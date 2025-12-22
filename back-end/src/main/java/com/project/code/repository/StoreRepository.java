@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StoreRepository extends JpaRepository<Store,Long> {
     List<Store> findByNameContainingIgnoreCase(String name);
+    Optional<Store> findById(Long id);
 }
