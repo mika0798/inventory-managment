@@ -7,12 +7,14 @@ import com.project.code.exception.InventoryNotFoundException;
 import com.project.code.exception.ProductNotFoundException;
 import com.project.code.exception.StoreNotFoundException;
 import com.project.code.repository.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderService {
     private ProductRepository productRepository;
     private InventoryRepository inventoryRepository;
@@ -21,24 +23,7 @@ public class OrderService {
     private OrderItemRepository orderItemRepository;
     private OrderDetailsRepository orderDetailsRepository;
 
-    @Autowired
-    public OrderService(
-            ProductRepository productRepository,
-            InventoryRepository inventoryRepository,
-            CustomerRepository customerRepository,
-            StoreRepository storeRepository,
-            OrderItemRepository orderItemRepository,
-            OrderDetailsRepository orderDetailsRepository
-    ) {
-        this.productRepository = productRepository;
-        this.inventoryRepository = inventoryRepository;
-        this.customerRepository = customerRepository;
-        this.storeRepository = storeRepository;
-        this.orderItemRepository = orderItemRepository;
-        this.orderDetailsRepository = orderDetailsRepository;
-    }
-
-    public void saveOrder(PlaceOrderRequest placeOrderRequest) {
+    public Long saveOrder(PlaceOrderRequest placeOrderRequest) {
         //Retrieve or create customer
         Customer customer = customerRepository
                 .findByEmail(placeOrderRequest.getCustomerEmail())
@@ -88,5 +73,7 @@ public class OrderService {
             purchasedItem.setPrice(productRequest.getPrice()*productRequest.getQuantity());
             orderItemRepository.save(purchasedItem);
         }
+
+        return order.getId();
     }
 }
