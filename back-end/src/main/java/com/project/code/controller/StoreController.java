@@ -48,7 +48,7 @@ public class StoreController {
         Store createStore = new Store(newStore.getName(), newStore.getAddress());
         Store savedStore = storeService.saveStore(createStore);
         ApiResponse<Store> response = new ApiResponse<>(
-                "Store",
+                "Store created successfully!",
                 savedStore);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
