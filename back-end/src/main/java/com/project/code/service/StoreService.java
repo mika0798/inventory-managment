@@ -3,7 +3,6 @@ package com.project.code.service;
 import com.project.code.entity.Store;
 import com.project.code.exception.ResourceAlreadyExistsException;
 import com.project.code.exception.StoreNotFoundException;
-import com.project.code.repository.ProductRepository;
 import com.project.code.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,7 @@ public class StoreService {
     }
 
     public Store saveStore(Store store){
-        if (storeRepository.existByNameIgnoreCase(store.getName())) {
+        if (storeRepository.existsByNameIgnoreCase(store.getName())) {
             throw new ResourceAlreadyExistsException("Store already exists");
         }
         return storeRepository.save(store);

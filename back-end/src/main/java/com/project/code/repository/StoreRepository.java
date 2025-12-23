@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface StoreRepository extends JpaRepository<Store,Long> {
     List<Store> findByNameContainingIgnoreCase(String name);
     Optional<Store> findById(Long id);
-    boolean existByNameIgnoreCase(String name);
+    boolean existsByNameIgnoreCase(String name);
 }
