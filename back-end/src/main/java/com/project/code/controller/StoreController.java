@@ -3,7 +3,6 @@ package com.project.code.controller;
 import com.project.code.dto.ApiResponse;
 import com.project.code.dto.PlaceOrderRequest;
 import com.project.code.dto.StoreCreateRequest;
-import com.project.code.entity.OrderDetails;
 import com.project.code.entity.Store;
 
 import com.project.code.service.OrderService;
