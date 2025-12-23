@@ -2,19 +2,19 @@ package com.project.code.controller;
 
 import com.project.code.dto.ApiResponse;
 import com.project.code.dto.PlaceOrderRequest;
+import com.project.code.dto.StoreCreateRequest;
 import com.project.code.entity.Store;
-import com.project.code.repository.StoreRepository;
+
 import com.project.code.service.OrderService;
 import com.project.code.service.StoreService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @Tag(name="Stores Rest API Endpoints",description="Operations related to stores")
 @RestController
@@ -36,16 +36,17 @@ public class StoreController {
             @PathVariable Long storeId) {
 
         Boolean result = storeService.storeExists(storeId);
-        ApiResponse<Boolean> apiResponse = new ApiResponse<>("Success"
-                ,result ? "Store exists" : "Store not found"
+        ApiResponse<Boolean> apiResponse = new ApiResponse<>(
+                result ? "Store exists" : "Store not found"
                 ,result);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @Operation(summary="Add new store",description="Create new store in the database")
     @PostMapping
-    public ResponseEntity<ApiResponse<Store>> addStore(@RequestBody Store store) {
-        Store savedStore = storeService.saveStore(store);
+    public ResponseEntity<ApiResponse<Store>> addStore(@Valid @RequestBody StoreCreateRequest newStore) {
+        Store createStore = new Store(newStore.getName(), newStore.getAddress());
+        Store savedStore = storeService.saveStore(createStore);
         ApiResponse<Store> response = new ApiResponse<>(
                 "Store",
                 savedStore);
@@ -57,7 +58,6 @@ public class StoreController {
     public ResponseEntity<ApiResponse<PlaceOrderRequest>> placeOrder(@RequestBody PlaceOrderRequest orderRequest) {
         orderService.saveOrder(orderRequest);
         ApiResponse<PlaceOrderRequest> response = new ApiResponse<>(
-                "Success",
                 "Order has been placed",
                 orderRequest);
         return ResponseEntity.status(HttpStatus.OK).body(response);
