@@ -243,6 +243,8 @@ function addStore(event) {
         body: JSON.stringify(data)
     })
         .then(response => {
+            if (!response.ok) {
+                throw new Error("Create store failed");
             return response.json();
         })
         .then(data => {
