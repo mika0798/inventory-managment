@@ -210,10 +210,13 @@ function validateStoreId(event) {
         headers: { "content-type": "application/json" },
     })
         .then(response => {
+            if (!response.ok) {
+                throw new Error("Invalid store id");
+            }
             return response.json();
         })
-        .then(data => {
-            if (data === true) {
+        .then(response => {
+            if (response.data === true) {
                 storeId.disabled = true;
                 document.getElementById('displayForm').style = 'display:block';
                 submitButton.style = 'display:flex';
@@ -246,7 +249,7 @@ function addStore(event) {
             if (!response.ok) {
                 throw new Error("Create store failed");
             return response.json();
-        })
+        }})
         .then(data => {
             alert(data.message);
             resetForm();
