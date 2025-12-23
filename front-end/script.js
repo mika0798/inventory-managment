@@ -204,7 +204,7 @@ function validateStoreId(event) {
 
     let submitButton = document.getElementById('submitButton');
     let storeId = document.getElementById('orderStoreId');
-    let url = `${apiURL}/store/validate/${storeId.value}`
+    let url = `${apiURL}/stores/validate/${storeId.value}`
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },
@@ -236,7 +236,7 @@ function addStore(event) {
 
     let data = { name: storeName, address: storeAddress };
 
-    let url = `${apiURL}/store`
+    let url = `${apiURL}/stores`
     fetch(url, {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -319,9 +319,6 @@ function filter() {
             alert(error);
         })
 }
-
-
-
 
 
 async function createData(products, storeId) {
@@ -926,7 +923,7 @@ async function placeOrder(event) {
 
 
     try {
-        const response = await fetch(`${apiURL}/store/placeOrder`, {
+        const response = await fetch(`${apiURL}/stores/placeOrder`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
