@@ -4075,3 +4075,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'inventory.order_item' doesn'
     where
         s1_0.id=?
 2025-12-23T12:55:55.682+07:00 TRACE 39371 --- [code] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2025-12-23T12:58:56.175+07:00  INFO 39371 --- [code] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-23T12:58:56.177+07:00  INFO 39371 --- [code] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-23T12:58:56.184+07:00  INFO 39371 --- [code] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23T12:58:56.186+07:00  INFO 39371 --- [code] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-23T12:58:56.188+07:00  INFO 39371 --- [code] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
