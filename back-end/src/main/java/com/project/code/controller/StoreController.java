@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name="Stores Rest API Endpoints",description="Operations related to stores")
 @RestController
-@RequestMapping("/store")
+@RequestMapping("/stores")
 public class StoreController {
     private final StoreService storeService;
     private final OrderService orderService;
@@ -41,6 +41,8 @@ public class StoreController {
                 ,result);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
+
+    // ==GET== /{id}/products
 
     @Operation(summary="Add new store",description="Create new store in the database")
     @PostMapping
