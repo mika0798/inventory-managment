@@ -4011,3 +4011,8 @@ java.lang.RuntimeException: Product not found with ID: 54
 2025-12-24T18:06:26.105+07:00  INFO 125673 --- [code] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-12-24T18:06:26.105+07:00  INFO 125673 --- [code] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-24T18:06:26.106+07:00  INFO 125673 --- [code] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-24T18:10:26.349+07:00  INFO 125673 --- [code] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-24T18:10:26.350+07:00  INFO 125673 --- [code] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-24T18:10:26.352+07:00  INFO 125673 --- [code] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-24T18:10:26.352+07:00  INFO 125673 --- [code] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown initiated...
+2025-12-24T18:10:26.354+07:00  INFO 125673 --- [code] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown completed.
