@@ -27,12 +27,12 @@
 
 <h2 id="gallery">2. Gallery</h2>
 <div align="left">
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_product.png" width=45% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_store.png" width=45% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Edit_inventory.png" width=45% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_inventory.png" width=45% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_products.png" width=45% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Place_order.png" width=45% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_product.png" width=50% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_store.png" width=50% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Edit_inventory.png" width=50% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_inventory.png" width=50% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_products.png" width=50% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Place_order.png" width=50% >
 </div>
 
 <h2 id="technology-stack">3. Technology Stack</h2>
