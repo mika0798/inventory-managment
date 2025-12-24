@@ -1,9 +1,8 @@
 package com.project.code.repository;
 
 
-import com.project.code.entity.Inventory;
-import com.project.code.entity.Product;
-import com.project.code.entity.Store;
+import com.project.code.domain.entity.Inventory;
+import com.project.code.domain.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

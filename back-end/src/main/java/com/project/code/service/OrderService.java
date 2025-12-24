@@ -1,8 +1,8 @@
 package com.project.code.service;
 
-import com.project.code.dto.PlaceOrderRequest;
-import com.project.code.dto.PurchaseProductDto;
-import com.project.code.entity.*;
+import com.project.code.domain.dto.PlaceOrderRequest;
+import com.project.code.domain.dto.PurchaseProductDto;
+import com.project.code.domain.entity.*;
 import com.project.code.exception.InventoryNotFoundException;
 import com.project.code.exception.ProductNotFoundException;
 import com.project.code.exception.StoreNotFoundException;

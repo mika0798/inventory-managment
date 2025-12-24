@@ -1,4 +1,4 @@
-package com.project.code.entity;
+package com.project.code.domain.entity;
 
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;

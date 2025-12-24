@@ -1,6 +1,6 @@
 package com.project.code.service;
 
-import com.project.code.entity.Store;
+import com.project.code.domain.entity.Store;
 import com.project.code.exception.ResourceAlreadyExistsException;
 import com.project.code.exception.StoreNotFoundException;
 import com.project.code.repository.StoreRepository;

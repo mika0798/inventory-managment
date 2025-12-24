@@ -1,14 +1,13 @@
 package com.project.code.service;
 
 
-import com.project.code.entity.Inventory;
-import com.project.code.entity.Product;
+import com.project.code.domain.entity.Inventory;
+import com.project.code.domain.entity.Product;
 import com.project.code.exception.InventoryNotFoundException;
 import com.project.code.repository.InventoryRepository;
 import com.project.code.repository.OrderDetailsRepository;
 import com.project.code.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

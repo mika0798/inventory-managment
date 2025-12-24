@@ -1,9 +1,9 @@
 package com.project.code.controller;
 
-import com.project.code.dto.ApiResponse;
-import com.project.code.dto.PlaceOrderRequest;
-import com.project.code.dto.StoreDto;
-import com.project.code.entity.Store;
+import com.project.code.domain.ApiResponse;
+import com.project.code.domain.dto.PlaceOrderRequest;
+import com.project.code.domain.dto.StoreDto;
+import com.project.code.domain.entity.Store;
 
 import com.project.code.service.OrderService;
 import com.project.code.service.StoreService;

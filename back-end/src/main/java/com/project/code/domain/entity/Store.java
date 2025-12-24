@@ -1,7 +1,6 @@
-package com.project.code.entity;
+package com.project.code.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.project.code.repository.InventoryRepository;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

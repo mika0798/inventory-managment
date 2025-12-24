@@ -1,6 +1,6 @@
 package com.project.code.repository;
 
-import com.project.code.entity.Store;
+import com.project.code.domain.entity.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

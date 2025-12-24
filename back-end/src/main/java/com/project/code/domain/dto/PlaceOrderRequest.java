@@ -1,4 +1,4 @@
-package com.project.code.dto;
+package com.project.code.domain.dto;
 
 import java.util.List;
 
