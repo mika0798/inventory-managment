@@ -1,15 +1,14 @@
 package com.project.code.dto;
 
-import lombok.Data;
 import java.util.List;
 
-@Data
-public class PlaceOrderRequest {
-    private Long storeId;
-    private String customerName;
-    private String customerEmail;
-    private String customerPhone;
-    private String datetime;
-    private List<PurchaseProductRequest> purchaseProduct;
-    private Double totalPrice;
-}
+
+public record PlaceOrderRequest (
+    Long storeId,
+    String customerName,
+    String customerEmail,
+    String customerPhone,
+    String datetime,
+    List<PurchaseProductDto> purchaseProduct,
+    Double totalPrice
+    ){}
