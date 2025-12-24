@@ -23,7 +23,6 @@ import java.util.List;
 @Tag(name="Stores Rest API Endpoints",description="Operations related to stores")
 @RestController
 @RequestMapping("/stores")
-@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class StoreController {
     private final StoreService storeService;

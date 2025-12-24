@@ -1,6 +1,6 @@
 package com.project.code.repository;
 
-
+import org.springframework.data.jpa.repository.Query;
 import com.project.code.domain.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,4 +21,6 @@ public interface ProductRepository  extends JpaRepository<Product,Long> {
     // ===== SEARCH =====
     List<Product> findByNameContainingIgnoreCase(String name);
     List<Product> findByNameContainingIgnoreCaseAndCategory(String name, String category);
+    @Query("SELECT i.product FROM Inventory i WHERE i.store.id = :storeId AND LOWER(i.product.name) LIKE LOWER(CONCAT('%', :pname, '%'))")
+    List<Product> findByNameLike(String pname, long storeId);
 }

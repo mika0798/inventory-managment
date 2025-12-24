@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name="Product Rest API Endpoints",description="Operations related to products")
-@RestController("/products")
-@CrossOrigin(origins = "http://localhost:3000")
+@RestController
+@RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
@@ -44,7 +44,7 @@ public class ProductController {
     public ResponseEntity<ApiResponse<List<Product>>> getProductByName(
             @Parameter(description="Product name to search")
             @PathVariable String name) {
-        List<Product> products = productService.searchByName(name);
+        List<Product> products = productService.filterByName(name);
         ApiResponse<List<Product>> response = new ApiResponse<>("Success", "Products found", products);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -56,7 +56,7 @@ public class ProductController {
             @PathVariable("category") String category,
             @Parameter(description="Product name")
             @PathVariable("productName") String productName) {
-        List<Product> products = productService.filterByCategoryAndName(category, productName);
+        List<Product> products = productService.filterAllProducts(category, productName);
         ApiResponse<List<Product>> response = new ApiResponse<>("Success", "Filtered products", products);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

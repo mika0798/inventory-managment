@@ -15,12 +15,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
-    private ProductRepository productRepository;
-    private InventoryRepository inventoryRepository;
-    private CustomerRepository customerRepository;
-    private StoreRepository storeRepository;
-    private OrderItemRepository orderItemRepository;
-    private OrderDetailsRepository orderDetailsRepository;
+    private final ProductRepository productRepository;
+    private final InventoryRepository inventoryRepository;
+    private final CustomerRepository customerRepository;
+    private final StoreRepository storeRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final OrderDetailsRepository orderDetailsRepository;
 
     public Long saveOrder(PlaceOrderRequest placeOrderRequest) {
         //Retrieve or create customer

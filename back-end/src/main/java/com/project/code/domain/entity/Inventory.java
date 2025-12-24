@@ -1,6 +1,7 @@
 package com.project.code.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,8 +17,8 @@ public class Inventory {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="product_id")
-    @JsonBackReference("product-inventory")
+    @JsonBackReference("inventory-product")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne

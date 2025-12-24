@@ -13,12 +13,19 @@ public class InventoryService {
     private final InventoryRepository inventoryRepository;
 
     public List<Inventory> searchByNameAndStore(String productName, Long storeId) {
-        return inventoryRepository.findByProduct_NameContainingIgnoreCaseAndStore_Id(productName, storeId);
+        return inventoryRepository.searchByNameAndStore(productName, storeId);
     }
 
 
     public List<Inventory> filterByAll(String category, String productName, Long storeId) {
         return inventoryRepository.findByProduct_CategoryAndProduct_NameContainingIgnoreCaseAndStore_Id(category, productName, storeId);
+    }
+
+    public Inventory getInventoryId(Inventory inventory) {
+        return inventoryRepository.findByStore_IdAndProduct_Id(
+                inventory.getStore().getId(),
+                inventory.getProduct().getId()
+        ).orElse(null);
     }
 
 

@@ -1,6 +1,8 @@
 package com.project.code.service;
 
+import com.project.code.domain.entity.Inventory;
 import com.project.code.domain.entity.Product;
+import com.project.code.repository.InventoryRepository;
 import com.project.code.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    private final InventoryRepository inventoryRepository;
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
@@ -22,8 +25,45 @@ public class ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found with ID: " + id));
     }
 
+    public List<Product> filterProductsInStore(
+            String category,
+            String productName,
+            Long storeId
+    ) {
+        List<Product> products;
 
-    public List<Product> searchByName(String name) {
+        if ("null".equalsIgnoreCase(category)) {
+            products = inventoryRepository.searchProductsInStore(storeId, productName);
+        } else if ("null".equalsIgnoreCase(productName)) {
+            products = inventoryRepository.findProductsByStoreIdAndCategory(storeId, category);
+        } else {
+            products = inventoryRepository.searchProductsInStoreByNameAndCategory(storeId, productName, category);
+        }
+        return products;
+    }
+
+    public List<Product> filterAllProducts(String category, String productName) {
+        List<Product> products;
+
+        if ("null".equalsIgnoreCase(category)) {
+            products = productRepository.findByNameContainingIgnoreCase(productName);
+        } else if ("null".equalsIgnoreCase(productName)) {
+            products = productRepository.findByCategory(category);
+        } else {
+            products = productRepository
+                    .findByNameContainingIgnoreCaseAndCategory(productName, category);
+        }
+        return products;
+    }
+    public List<Product> findByNameLike(String name, Long storeId) {
+        return productRepository.findByNameLike(name, storeId);
+    }
+
+    public List<Product> filterByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+
+    public List<Product> filterByName(String name) {
         return productRepository.findByNameContainingIgnoreCase(name);
     }
 
@@ -34,6 +74,10 @@ public class ProductService {
 
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    public boolean existsById(Long id) {
+        return productRepository.existsById(id);
     }
 
     public Product updateProduct(Product product) {

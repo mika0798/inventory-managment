@@ -34,8 +34,8 @@ public class Product {
     @NotNull(message="Sku cannot be null")
     private String sku;
 
-    @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
-    @JsonManagedReference("product-inventory")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @JsonManagedReference("inventory-product")
     private List<Inventory> inventory;
 
     public Product(String name, String category, Double price, String sku) {
