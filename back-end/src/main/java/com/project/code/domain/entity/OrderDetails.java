@@ -32,7 +32,7 @@ public class OrderDetails {
     private Double totalPrice;
     private LocalDateTime date;
 
-    @OneToMany(mappedBy= "orderDetails", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy= "orderDetails", fetch = FetchType.EAGER)
     @JsonManagedReference("order-item")
     private List<OrderItem> orderItems;
 

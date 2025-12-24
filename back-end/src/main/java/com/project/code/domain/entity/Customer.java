@@ -32,7 +32,7 @@ public class Customer {
     @NotBlank(message="Phone number cannot be blank")
     private String phone;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     @JsonBackReference("order-customer")
     private List<OrderDetails> orders;
 

@@ -16,6 +16,7 @@ import java.util.List;
 @Tag(name="Inventory Rest API Endpoints",description="Operations related to inventory management")
 @RestController
 @RequestMapping("/inventory")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class InventoryController {
     private final InventoryService inventoryService;

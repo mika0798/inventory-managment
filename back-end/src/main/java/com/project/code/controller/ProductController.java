@@ -15,6 +15,7 @@ import java.util.List;
 
 @Tag(name="Product Rest API Endpoints",description="Operations related to products")
 @RestController("/products")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;

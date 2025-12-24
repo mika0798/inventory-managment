@@ -5,10 +5,8 @@ import com.project.code.domain.entity.Store;
 import com.project.code.exception.ResourceAlreadyExistsException;
 import com.project.code.exception.StoreNotFoundException;
 import com.project.code.repository.InventoryRepository;
-import com.project.code.repository.ProductRepository;
 import com.project.code.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
