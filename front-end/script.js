@@ -270,7 +270,7 @@ function viewProduct(event) {
     storeId = inputstoreId.value;
     inputstoreId.disabled = true;
 
-    let url = `${apiURL}/inventory/${storeId}`;
+    let url = `${apiURL}/${storeId}/products`;
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },

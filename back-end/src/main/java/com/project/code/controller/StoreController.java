@@ -3,6 +3,7 @@ package com.project.code.controller;
 import com.project.code.domain.ApiResponse;
 import com.project.code.domain.dto.PlaceOrderRequest;
 import com.project.code.domain.dto.StoreDto;
+import com.project.code.domain.entity.Product;
 import com.project.code.domain.entity.Store;
 
 import com.project.code.service.OrderService;
@@ -16,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name="Stores Rest API Endpoints",description="Operations related to stores")
 @RestController
@@ -40,7 +43,9 @@ public class StoreController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
-    // ==GET== /{id}/products
+    @Operation(summary="Get products for a store", description="Retrieve all products available in a store")
+    @GetMapping("/{storeId}/products")
+    public ResponseEntity<ApiResponse<List<Product>>> getProducts()
 
     @Operation(summary="Add new store",description="Create new store in the database")
     @PostMapping
