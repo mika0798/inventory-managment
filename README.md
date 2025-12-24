@@ -31,10 +31,10 @@ The system consists of a **Spring Boot backend** and a **HTML/CSS/JavaScript fro
 - **Java Version**: 21
 - **Build Tool**: Maven
 - **Database**: 
-  - JPA/Hibernate for relational data
+  - MySQL for relational data
   - MongoDB for document storage (reviews)
 - **Dependencies**:
-  - Spring Data JPA
+  - Spring Data JPA/Hibernate
   - Spring Data MongoDB
   - Spring Web
   - Spring Validation
@@ -82,8 +82,10 @@ inventory-managment/
 
 ## 4. Database ERD
 ![DatabaseERD.png](media/DatabaseERD.png)
+<img src="" width="60">
 
 ## 5. POJO ERD
 ![POJOERD.png](media/POJOERD.png)
 
 ## 6. API Endpoints
+![Endpoints.png](media/Endpoints.png)
