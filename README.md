@@ -4,6 +4,7 @@
 <h2>Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#gallery">Gallery</a></li>
   <li><a href="#technology-stack">Technology Stack</a></li>
   <li><a href="#project-structure">Project Structure</a></li>
   <li><a href="#database-erd">Database ERD</a></li>
@@ -24,7 +25,17 @@
 </ul>
 <p>The system consists of a <strong>Spring Boot backend</strong> and a <strong>HTML/CSS/JavaScript frontend</strong>, communicating through RESTful APIs.</p>
 
-<h2 id="technology-stack">2. Technology Stack</h2>
+<h2 id="gallery">2. Gallery</h2>
+<div align="left">
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_product.png" width=33% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_store.png" width=33% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Edit_inventory.png" width=33% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_inventory.png" width=33% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_products.png" width=33% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Place_order.png" width=33% >
+</div>
+
+<h2 id="technology-stack">3. Technology Stack</h2>
 <h3>Backend</h3>
 <ul>
   <li><strong>Framework</strong>: Spring Boot 3.5.8</li>
@@ -56,7 +67,7 @@
   <li>Bootstrap 5.3.3</li>
 </ul>
 
-<h2 id="project-structure">3. Project Structure</h2>
+<h2 id="project-structure">4. Project Structure</h2>
 <pre><code>inventory-managment/
 ├── back-end/                          # Spring Boot Backend
 │   ├── pom.xml                       # Maven configuration
@@ -86,11 +97,11 @@
 └── media/                            # Documentation Images
 </code></pre>
 
-<h2 id="database-erd">4. Database ERD</h2>
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/DatabaseERD.png" width=50% alt="Database ERD">
+<h2 id="database-erd">5. Database ERD</h2>
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/DatabaseERD.png" width=60% alt="Database ERD">
 
-<h2 id="pojo-erd">5. POJO ERD</h2>
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/POJOERD.png" width=50% alt="POJO ERD">
+<h2 id="pojo-erd">6. POJO ERD</h2>
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/POJOERD.png" width=60% alt="POJO ERD">
 
-<h2 id="api-endpoints">6. API Endpoints</h2>
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Endpoints.png" width=50% alt="API Endpoints">
+<h2 id="api-endpoints">7. API Endpoints</h2>
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Endpoints.png" width=60% alt="API Endpoints">
