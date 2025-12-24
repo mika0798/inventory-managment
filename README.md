@@ -9,10 +9,10 @@ Backend developer
 ## 3. Tech
 
 
-## 4. ERD
+## 4. Database ERD
 
 
-## 5. Entity Diagram
+## 5. POJO ERD
 
 
 ## 6. Endpoints
