@@ -45,7 +45,7 @@ function createMoreOrderField() {
             <td><input type="text" class="input-cell SerialNo" disabled>
             </td>
             <td><input type="text" class="input-cell" id="orderProductName${Ordercount}"
-                placeholder="Enter Product Name" onkeyup="fillProductId(${Ordercount})"
+                placeholder="Enter Product Name" onkeyup="fillByProductName(${Ordercount})"
                 required>
             <div id="OrderSuggestion${Ordercount}">
 
@@ -115,7 +115,39 @@ function setSerialNo() {
 }
 
 
-function fillProductId(count) {
+// function fillProductName(count) {
+//     let storeId = document.getElementById('orderStoreId').value;
+//     suggestion = document.getElementById(`OrderSuggestion${count}`);
+//     productName = document.getElementById(`orderProductName${count}`).value
+//     if (productName.trim() !== '') {
+//         let url = `${apiURL}/inventory/search/${productName}/${storeId}`;
+//         fetch(url, {
+//             method: "GET",
+//             headers: { "content-type": "application/json" },
+//         })
+//             .then(response => {
+//                 return response.json();
+//             })
+//             .then(response => {
+//                 let products = [];
+//                 if (Array.isArray(response.data)) {
+//                     products = response.data
+//                         .map(inv => inv.product)
+//                         .filter(prod => !!prod);
+//                 }
+//                showOrderSuggestion(products, count);
+//             })
+//             .catch(error => {
+//                 alert(error);
+//             })
+//     }
+//     else {
+//         suggestion.innerHTML = "";
+//     }
+// }
+
+function fillByProductName(count) {
+    console.log("fillProduct called");
     let storeId = document.getElementById('orderStoreId').value;
     suggestion = document.getElementById(`OrderSuggestion${count}`);
     productId = document.getElementById(`orderProductName${count}`).value
@@ -129,8 +161,8 @@ function fillProductId(count) {
                 return response.json();
             })
             .then(data => {
-    
-               showOrderSuggestion(data.product, count);
+                let products = Array.isArray(data.data) ? data.data : [];
+               showOrderSuggestion(products, count);
             })
             .catch(error => {
                 alert(error);
@@ -145,10 +177,8 @@ function fillProductId(count) {
 
 
 
-
-
 function showOrderSuggestion(products, count) {
-
+    console.log("ShowOrderSuggestion called");
 
     suggestion = document.getElementById(`OrderSuggestion${count}`);
     productName = document.getElementById(`orderProductName${count}`);
@@ -270,7 +300,7 @@ function viewProduct(event) {
     storeId = inputstoreId.value;
     inputstoreId.disabled = true;
 
-    let url = `${apiURL}/${storeId}/products`;
+    let url = `${apiURL}/stores/${storeId}/products`;
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },
@@ -279,7 +309,7 @@ function viewProduct(event) {
             return response.json();
         })
         .then(data => {
-            createData(data.products, storeId);
+            createData(data.data, storeId);
         })
 }
 
@@ -316,7 +346,7 @@ function filter() {
             return response.json();
         })
         .then(data => {
-            createData(data.product, storeId);
+            createData(data.data, storeId);
         })
         .catch(error => {
             alert(error);
@@ -382,9 +412,15 @@ async function createData(products, storeId) {
         delbutton.classList.add('btn', 'btn-danger');
         delbutton.textContent = 'Delete';
         delbutton.value = product.id;
-        delbutton.addEventListener('click', function () {
-            showModal(this.value, product.name, 2);
-        });
+        if (product.inventory && product.inventory.length > 0) {
+            delbutton.value = product.inventory[0].id; 
+            delbutton.addEventListener('click', function () {
+                showModal(this.value, product.name, 2); 
+            });
+        } else {
+            delbutton.disabled = true;
+            delbutton.textContent = 'No Inventory';
+        }
         buttonTable2.appendChild(delbutton);
 
 
@@ -418,8 +454,8 @@ function viewProductByid(productId) {
         })
         .then(data => {
             console.log(data);
-            if (data.products) {
-                fillDetails(data.products, productId);
+            if (data.data) {
+                fillDetails(data.data, productId);
             }
             else {
                 alert("No data with product id: " + productId);
@@ -494,7 +530,7 @@ function fillProductName() {
                 return response.json();
             })
             .then(data => {
-               showproductSuggestion(data.products);
+               showproductSuggestion(data.data);
             })
             .catch(error => {
                 alert(error);
@@ -577,8 +613,8 @@ function viewProductList() {
             return response.json();
         })
         .then(data => {
-            if (data.products) {
-                showProductsInTable(data.products);
+            if (data.data) {
+                showProductsInTable(data.data);
             }
             else {
                 alert("No data with product id: " + productId);
@@ -753,7 +789,7 @@ async function filterParentProduct() {
         })
         .then(data => {
 
-            showProductsInTable(data.products);
+            showProductsInTable(data.data);
         })
         .catch(error => {
             alert(error);
@@ -764,7 +800,7 @@ async function filterParentProduct() {
 
 function getProductByid(productId) {
 
-    let url = `${apiURL}/products/product/${productId}`;
+    let url = `${apiURL}/products/${productId}`;
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },
@@ -773,8 +809,8 @@ function getProductByid(productId) {
             return response.json();
         })
         .then(data => {
-            if (data.products) {
-                setParentProduct(data.products);
+            if (data.data) {
+                setParentProduct(data.data);
             }
             else {
                 alert("No data with product id: " + productId);
