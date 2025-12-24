@@ -2,7 +2,7 @@ package com.project.code.controller;
 
 import com.project.code.dto.ApiResponse;
 import com.project.code.dto.PlaceOrderRequest;
-import com.project.code.dto.StoreCreateRequest;
+import com.project.code.dto.StoreDto;
 import com.project.code.entity.Store;
 
 import com.project.code.service.OrderService;
@@ -44,8 +44,8 @@ public class StoreController {
 
     @Operation(summary="Add new store",description="Create new store in the database")
     @PostMapping
-    public ResponseEntity<ApiResponse<Store>> addStore(@Valid @RequestBody StoreCreateRequest newStore) {
-        Store createStore = new Store(newStore.getName(), newStore.getAddress());
+    public ResponseEntity<ApiResponse<Store>> addStore(@Valid @RequestBody StoreDto newStore) {
+        Store createStore = new Store(newStore.name(), newStore.address());
         Store savedStore = storeService.saveStore(createStore);
         Boolean result = storeService.storeExists(savedStore.getId());
         ApiResponse<Store> response = new ApiResponse<>(
