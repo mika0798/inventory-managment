@@ -1,20 +1,22 @@
 package com.project.code.service;
 
+import com.project.code.domain.entity.Product;
 import com.project.code.domain.entity.Store;
 import com.project.code.exception.ResourceAlreadyExistsException;
 import com.project.code.exception.StoreNotFoundException;
+import com.project.code.repository.ProductRepository;
 import com.project.code.repository.StoreRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
+@RequiredArgsConstructor
 public class StoreService {
     private final StoreRepository storeRepository;
-
-    @Autowired
-    public StoreService(StoreRepository storeRepository) {
-        this.storeRepository = storeRepository;
-    }
+    private final ProductRepository productRepository;
 
     public Store getStoreById(Long id){
         return storeRepository
@@ -33,4 +35,10 @@ public class StoreService {
         return storeRepository.save(store);
     }
 
+    public List<Product> getAllProductInStore(Long storeId){
+        if (!storeRepository.existsById(storeId)) {
+            throw new StoreNotFoundException("Store not found");
+        }
+        return productRepository.findProductByStoreId(storeId);
+    }
 }

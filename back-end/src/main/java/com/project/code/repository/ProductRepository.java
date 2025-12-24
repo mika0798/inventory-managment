@@ -12,11 +12,12 @@ public interface ProductRepository  extends JpaRepository<Product,Long> {
     List<Product> findAll();
     Optional<Product> findById(Long id);
 
-    // ===== BASIC DERIVED QUERIES =====
+    // ===== DERIVED QUERIES =====
    Optional<Product> findBySku(String sku);
    Optional<Product> findByNameIgnoreCase(String name);
    List<Product> findByCategory(String category);
    List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
+   List<Product> findProductByStoreId(Long storeId);
 
     // ===== SEARCH =====
     List<Product> findByNameContainingIgnoreCase(String name);
