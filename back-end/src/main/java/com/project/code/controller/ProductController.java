@@ -52,10 +52,10 @@ public class ProductController {
     @GetMapping("/filter/{category}/{productName}")
     public ResponseEntity<ApiResponse<List<Product>>> getProductsByCategoryAndName(
             @Parameter(description="Category ID")
-            @PathVariable("category") Long categoryId,
+            @PathVariable("category") String category,
             @Parameter(description="Product name")
             @PathVariable("productName") String productName) {
-        List<Product> products = productService.filterByCategoryAndName(categoryId, productName);
+        List<Product> products = productService.filterByCategoryAndName(category, productName);
         ApiResponse<List<Product>> response = new ApiResponse<>("Success", "Filtered products", products);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

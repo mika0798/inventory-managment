@@ -35,13 +35,13 @@ public class InventoryController {
     @Operation(summary="Filter inventory",description="Filter products by category and name in a store")
     @GetMapping("/filter/{category}/{productName}/{storeId}")
     public ResponseEntity<ApiResponse<List<Inventory>>> filterInventory(
-            @Parameter(description="Category ID")
-            @PathVariable("category") Long categoryId,
+            @Parameter(description="Category")
+            @PathVariable("category") String category,
             @Parameter(description="Product name")
             @PathVariable("productName") String productName,
             @Parameter(description="Store ID")
             @PathVariable Long storeId) {
-        List<Inventory> inventories = inventoryService.filterByAll(categoryId, productName, storeId);
+        List<Inventory> inventories = inventoryService.filterByAll(category, productName, storeId);
         ApiResponse<List<Inventory>> response = new ApiResponse<>("Success", "Filtered products", inventories);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

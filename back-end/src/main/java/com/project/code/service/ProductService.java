@@ -27,8 +27,9 @@ public class ProductService {
         return productRepository.findByNameContainingIgnoreCase(name);
     }
 
-    public List<Product> filterByCategoryAndName(Long categoryId, String productName) {
-        return productRepository.findByCategoryAndNameContainingIgnoreCase(categoryId, productName);
+    public List<Product> filterByCategoryAndName(String category, String productName) {
+        return productRepository
+                .findByNameContainingIgnoreCaseAndCategory(productName, category);
     }
 
     public Product saveProduct(Product product) {

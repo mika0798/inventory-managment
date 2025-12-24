@@ -1,6 +1,5 @@
 package com.project.code.repository;
 
-
 import com.project.code.domain.entity.Inventory;
 import com.project.code.domain.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -51,4 +50,7 @@ public interface InventoryRepository extends JpaRepository<Inventory,Long> {
             String category
     );
 
+    List<Inventory> findByProduct_NameContainingIgnoreCaseAndStore_Id(String productName, Long storeId);
+    List<Inventory> findByProduct_CategoryAndProduct_NameContainingIgnoreCaseAndStore_Id(String category, String productName, Long storeId);
+    Optional<Inventory> findByStore_IdAndProduct_Id(Long storeId, Long productId);
 }

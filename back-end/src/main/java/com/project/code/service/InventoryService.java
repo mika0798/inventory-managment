@@ -13,17 +13,17 @@ public class InventoryService {
     private final InventoryRepository inventoryRepository;
 
     public List<Inventory> searchByNameAndStore(String productName, Long storeId) {
-        return inventoryRepository.findByProductNameContainingIgnoreCaseAndStoreId(productName, storeId);
+        return inventoryRepository.findByProduct_NameContainingIgnoreCaseAndStore_Id(productName, storeId);
     }
 
 
-    public List<Inventory> filterByAll(Long categoryId, String productName, Long storeId) {
-        return inventoryRepository.findByCategoryAndProductNameAndStoreId(categoryId, productName, storeId);
+    public List<Inventory> filterByAll(String category, String productName, Long storeId) {
+        return inventoryRepository.findByProduct_CategoryAndProduct_NameContainingIgnoreCaseAndStore_Id(category, productName, storeId);
     }
 
 
     public Boolean validateStock(Integer quantity, Long storeId, Long productId) {
-        Inventory inventory = inventoryRepository.findByStoreIdAndProductId(storeId, productId)
+        Inventory inventory = inventoryRepository.findByStore_IdAndProduct_Id(storeId, productId)
                 .orElseThrow(() -> new RuntimeException("Product not found in this store"));
         return inventory.getStockLevel() >= quantity;
     }
