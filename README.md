@@ -26,13 +26,13 @@
 <p>The system consists of a <strong>Spring Boot backend</strong> and a <strong>HTML/CSS/JavaScript frontend</strong>, communicating through RESTful APIs.</p>
 
 <h2 id="gallery">2. Gallery</h2>
-<div align="left">
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_product.png" width=50% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_store.png" width=50% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Edit_inventory.png" width=50% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_inventory.png" width=50% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_products.png" width=50% >
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Place_order.png" width=50% >
+<div align="center">
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_product.png" width=80% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Add_store.png" width=80% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Edit_inventory.png" width=80% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_inventory.png" width=80% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Manage_products.png" width=80% >
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Place_order.png" width=80% >
 </div>
 
 <h2 id="technology-stack">3. Technology Stack</h2>
@@ -98,10 +98,14 @@
 </code></pre>
 
 <h2 id="database-erd">5. Database ERD</h2>
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/DatabaseERD.png" width=60% alt="Database ERD">
+<div align="center"><img src="https://github.com/mika0798/inventory-managment/blob/main/media/DatabaseERD.png" width=60% alt="Database ERD"></div>
+
 
 <h2 id="pojo-erd">6. POJO ERD</h2>
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/POJOERD.png" width=60% alt="POJO ERD">
+<div align="center"><img src="https://github.com/mika0798/inventory-managment/blob/main/media/POJOERD.png" width=60% alt="POJO ERD"></div>
+
 
 <h2 id="api-endpoints">7. API Endpoints</h2>
-<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Endpoints.png" width=60% alt="API Endpoints">
+<div align="center">
+<img src="https://github.com/mika0798/inventory-managment/blob/main/media/Endpoints.png" width=60% alt="API Endpoints"></div>
+
