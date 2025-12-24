@@ -10,9 +10,9 @@ Backend developer
 
 
 ## 4. Database ERD
-
+![DatabaseERD.png](media/DatabaseERD.png)
 
 ## 5. POJO ERD
-
+![POJOERD.png](media/POJOERD.png)
 
 ## 6. Endpoints
