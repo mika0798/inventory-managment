@@ -46,7 +46,7 @@ public class StoreController {
     @Operation(summary="Get products for a store", description="Retrieve all products available in a store")
     @GetMapping("/{storeId}/products")
     public ResponseEntity<ApiResponse<List<Product>>> getProducts(@PathVariable Long storeId) {
-        List<Product> products = storeService.getAllProductInStore(storeId);
+        List<Product> products = storeService.getAllProductsInStore(storeId);
         ApiResponse<List<Product>> response = new ApiResponse<>(
                 "Success",
                 "Products retrieved successfully",

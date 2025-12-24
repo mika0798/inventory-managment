@@ -408,7 +408,7 @@ async function createData(products, storeId) {
 
 function viewProductByid(productId) {
 
-    let url = `${apiURL}/product/product/${productId}`;
+    let url = `${apiURL}/products/${productId}`;
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },
@@ -485,7 +485,7 @@ function updateProduct(event) {
 function fillProductName() {
     let productName = document.getElementById('productName').value;
     if (productName.trim() != "") {
-        let url = `${apiURL}/product/searchProduct/${productName}`;
+        let url = `${apiURL}/products/searchProduct/${productName}`;
         fetch(url, {
             method: "GET",
             headers: { "content-type": "application/json" },
@@ -568,7 +568,7 @@ function addProductToInventory(event) {
 
 
 function viewProductList() {
-    let url = `${apiURL}/product`;
+    let url = `${apiURL}/products`;
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },
@@ -685,7 +685,7 @@ function deleteItembyId(id) {
  
 
 
-    let url = `${apiURL}/product/${id}`;
+    let url = `${apiURL}/products/${id}`;
     fetch(url, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
@@ -743,7 +743,7 @@ async function filterParentProduct() {
         productName=null;
     }
 
-    let url = `${apiURL}/product/category/${productName}/${category}`;
+    let url = `${apiURL}/products/filter/${category}/${productName}`;
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },
@@ -764,7 +764,7 @@ async function filterParentProduct() {
 
 function getProductByid(productId) {
 
-    let url = `${apiURL}/product/product/${productId}`;
+    let url = `${apiURL}/products/product/${productId}`;
     fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" },
@@ -804,7 +804,7 @@ function updateParentProduct(event) {
     category = document.getElementById('pcategory').value;
     price = document.getElementById('pproductPrice').value;
     sku = document.getElementById('pSKU').value;
-    let url = `${apiURL}/product`
+    let url = `${apiURL}/products`
     data = { id: productId, name: productName, category: category, price: price, sku: sku };
     fetch(url, {
         method: "PUT",
@@ -831,7 +831,7 @@ function addParentProduct(event) {
 
     let data = { name: productName, category: category, price: productPrice, sku: SKU };
 
-    let url = `${apiURL}/product`
+    let url = `${apiURL}/products`
     fetch(url, {
         method: "POST",
         headers: { "content-type": "application/json" },
