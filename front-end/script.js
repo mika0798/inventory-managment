@@ -3,6 +3,38 @@ let students = [];
 let Ordercount = 1;
 let deleteRow = [];
 
+function login() {
+    let usernameReq = document.getElementById('username').value;
+    let passwordReq = document.getElementById('password').value;
+    let data = {username : usernameReq, password: passwordReq};
+    let url = `${apiURL}/login`
+    fetch(url, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
+        .then(response => response.text())
+        .then(token => {
+            localStorage.setItem('token', token);
+            alert("Logged in successfully");
+        });
+}
+
+function authFetch(url, options = {}) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        throw new Error("Token not found, please login!");
+    }
+    return fetch(url, {
+        ...options,
+        headers : {
+            ...(options.headers || {}),
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json"
+        }
+    });
+}
+
 function resetForm() {
     const inputs = document.querySelectorAll("#myform input:not([type='submit']), #myform select");
     inputs.forEach(input => {
@@ -153,9 +185,8 @@ function fillByProductName(count) {
     productId = document.getElementById(`orderProductName${count}`).value
     if (productId.trim() !== '') {
         let url = `${apiURL}/inventory/search/${productId}/${storeId}`;
-        fetch(url, {
-            method: "GET",
-            headers: { "content-type": "application/json" },
+        authFetch(url, {
+            method: "GET"
         })
             .then(response => {
                 return response.json();
@@ -235,9 +266,8 @@ function validateStoreId(event) {
     let submitButton = document.getElementById('submitButton');
     let storeId = document.getElementById('orderStoreId');
     let url = `${apiURL}/stores/validate/${storeId.value}`
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             if (!response.ok) {
@@ -258,7 +288,6 @@ function validateStoreId(event) {
         })
 }
 
-
 function addStore(event) {
     event.preventDefault();
     let storeName = document.getElementById('storeName').value;
@@ -270,9 +299,8 @@ function addStore(event) {
     let data = { name: storeName, address: storeAddress };
 
     let url = `${apiURL}/stores`
-    fetch(url, {
+    authFetch(url, {
         method: "POST",
-        headers: { "content-type": "application/json" },
         body: JSON.stringify(data)
     })
         .then(response => {
@@ -301,9 +329,8 @@ function viewProduct(event) {
     inputstoreId.disabled = true;
 
     let url = `${apiURL}/stores/${storeId}/products`;
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
@@ -338,9 +365,8 @@ function filter() {
 
 
     let url = `${apiURL}/inventory/filter/${category}/${productName}/${storeId}`;
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
@@ -445,9 +471,8 @@ async function createData(products, storeId) {
 function viewProductByid(productId) {
 
     let url = `${apiURL}/products/${productId}`;
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
@@ -502,9 +527,8 @@ function updateProduct(event) {
 
     console.log(data);
     let url = `${apiURL}/inventory`;
-    fetch(url, {
+    authFetch(url, {
         method: "PUT",
-        headers: { "content-type": "application/json" },
         body: JSON.stringify(data)
     })
         .then(response => {
@@ -522,9 +546,8 @@ function fillProductName() {
     let productName = document.getElementById('productName').value;
     if (productName.trim() != "") {
         let url = `${apiURL}/products/searchProduct/${productName}`;
-        fetch(url, {
-            method: "GET",
-            headers: { "content-type": "application/json" },
+        authFetch(url, {
+            method: "GET"
         })
             .then(response => {
                 return response.json();
@@ -587,9 +610,8 @@ function addProductToInventory(event) {
 
     let data = { product: { id: productId }, store: { id: storeId }, stockLevel: stockLevel };
     let url = `${apiURL}/inventory`
-    fetch(url, {
+    authFetch(url, {
         method: "POST",
-        headers: { "content-type": "application/json" },
         body: JSON.stringify(data)
     })
         .then(response => {
@@ -605,9 +627,8 @@ function addProductToInventory(event) {
 
 function viewProductList() {
     let url = `${apiURL}/products`;
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
@@ -722,9 +743,8 @@ function deleteItembyId(id) {
 
 
     let url = `${apiURL}/products/${id}`;
-    fetch(url, {
-        method: "DELETE",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "DELETE"
     })
         .then(response => {
             return response.json();
@@ -736,15 +756,12 @@ function deleteItembyId(id) {
         .catch(error => {
             alert(error);
         })
-
-
 }
 
 function removeFromInventory(id) {
     let url = `${apiURL}/inventory/${id}`
-    fetch(url, {
-        method: "DELETE",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "DELETE"
     })
         .then(response => {
             return response.json();
@@ -780,9 +797,8 @@ async function filterParentProduct() {
     }
 
     let url = `${apiURL}/products/filter/${category}/${productName}`;
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
@@ -801,9 +817,8 @@ async function filterParentProduct() {
 function getProductByid(productId) {
 
     let url = `${apiURL}/products/${productId}`;
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
@@ -842,9 +857,8 @@ function updateParentProduct(event) {
     sku = document.getElementById('pSKU').value;
     let url = `${apiURL}/products`
     data = { id: productId, name: productName, category: category, price: price, sku: sku };
-    fetch(url, {
+    authFetch(url, {
         method: "PUT",
-        headers: { "content-type": "application/json" },
         body: JSON.stringify(data)
     })
         .then(response => {
@@ -868,9 +882,8 @@ function addParentProduct(event) {
     let data = { name: productName, category: category, price: productPrice, sku: SKU };
 
     let url = `${apiURL}/products`
-    fetch(url, {
+    authFetch(url, {
         method: "POST",
-        headers: { "content-type": "application/json" },
         body: JSON.stringify(data)
     })
         .then(response => {
@@ -893,9 +906,8 @@ function validateQuantity(OrderNo) {
         return;
     }
     let url = `${apiURL}/inventory/validate/${quantity}/${storeId}/${productId}`
-    fetch(url, {
-        method: "GET",
-        headers: { "content-type": "application/json" }
+    authFetch(url, {
+        method: "GET"
     })
         .then(response => {
             return response.json();
@@ -962,11 +974,8 @@ async function placeOrder(event) {
 
 
     try {
-        const response = await fetch(`${apiURL}/stores/placeOrder`, {
+        const response = await authFetch(`${apiURL}/stores/placeOrder`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify(orderData)
         }).then(response => {
             return response.json();
