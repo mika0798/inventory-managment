@@ -20,6 +20,11 @@ function login() {
         });
 }
 
+function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/login.html";
+}
+
 function authFetch(url, options = {}) {
     const token = localStorage.getItem("token");
     if (!token) {
