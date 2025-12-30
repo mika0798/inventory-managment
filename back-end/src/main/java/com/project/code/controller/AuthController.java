@@ -5,6 +5,7 @@ import com.project.code.service.JwtService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,7 +24,7 @@ public class AuthController {
 
     @PostMapping
     @Operation(summary = "Authenticating login request",description = "Verifying login details and generating token")
-    public String login(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.username(),
@@ -31,6 +32,6 @@ public class AuthController {
                 )
         );
 
-        return jwtService.generateToken(authentication.getName());
+        return ResponseEntity.ok(jwtService.generateToken(authentication.getName()));
     }
 }
