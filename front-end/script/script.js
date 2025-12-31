@@ -3,23 +3,6 @@ let students = [];
 let Ordercount = 1;
 let deleteRow = [];
 
-function login() {
-    let usernameReq = document.getElementById('username').value;
-    let passwordReq = document.getElementById('password').value;
-    let data = {username : usernameReq, password: passwordReq};
-    let url = `${apiURL}/login`
-    fetch(url, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    })
-        .then(response => response.text())
-        .then(token => {
-            localStorage.setItem('token', token);
-            alert("Logged in successfully");
-        });
-}
-
 function logout() {
     localStorage.removeItem("token");
     window.location.href = "/login.html";
@@ -421,7 +404,7 @@ async function createData(products, storeId) {
         reviewBtn.classList.add('btn', 'btn-info');
         reviewBtn.textContent = 'Reviews';
         reviewBtn.addEventListener('click', () => {
-            window.location = `reviews.html?productId=${product.id}&storeId=${storeId}&productName=${product.name}`;
+            window.location = `../dashboard/reviews.html`;
         })
         reviewCol.appendChild(reviewBtn);
 
@@ -432,7 +415,7 @@ async function createData(products, storeId) {
         button.classList.add('btn', 'btn-warning');
         button.textContent = 'Edit';
         button.addEventListener('click', () => {
-            window.location = `edit-product.html?productId=${product.id}&storeId=${storeId}&stockLevel=${product.inventory[0].stockLevel}`;
+            window.location = `../dashboard/edit-product.html`;
 
         });
         buttoncolumn.appendChild(button);
@@ -687,7 +670,7 @@ function showProductsInTable(products) {
         button.value = product.id;
         button.textContent = 'Edit';
         button.addEventListener('click', function () {
-            window.location = `edit-parent-product.html?productId=${this.value}`
+            window.location = `../dashboard/edit-parent-product.html`
 
         });
         buttonTable.appendChild(button);
