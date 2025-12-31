@@ -13,7 +13,8 @@ public class UserConfig {
     public UserDetailsService userDetailsService() {
         UserDetails admin = User.builder()
                 .username("admin")
-                .password("{bcrypt}$2a$10$JO8UZGRe/1BxE.Sbyat5HumabBIxHmnHo4tYayiXbkvJDqNcwgQ2S")
+//                .password("{bcrypt}$2a$10$JO8UZGRe/1BxE.Sbyat5HumabBIxHmnHo4tYayiXbkvJDqNcwgQ2S")
+                .password("{noop}admin123")
                 .roles("ADMIN")
                 .build();
 
