@@ -2,10 +2,7 @@ package com.project.code.controller;
 
 
 import com.project.code.domain.ErrorResponse;
-import com.project.code.exception.CustomerNotFoundException;
-import com.project.code.exception.InventoryNotFoundException;
-import com.project.code.exception.ProductNotFoundException;
-import com.project.code.exception.StoreNotFoundException;
+import com.project.code.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -37,7 +34,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({ProductNotFoundException.class, InventoryNotFoundException.class, StoreNotFoundException.class, CustomerNotFoundException.class})
+    @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleNotFoundExceptions(
             RuntimeException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
