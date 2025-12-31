@@ -1,6 +1,6 @@
-package com.project.code.filter;
+package com.project.code.security.filter;
 
-import com.project.code.service.JwtService;
+import com.project.code.security.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

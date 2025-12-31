@@ -1,7 +1,7 @@
-package com.project.code.controller;
+package com.project.code.security.controller;
 
-import com.project.code.domain.dto.LoginRequest;
-import com.project.code.service.JwtService;
+import com.project.code.security.service.JwtService;
+import com.project.code.security.dto.LoginRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
