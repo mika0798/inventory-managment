@@ -3,7 +3,7 @@ package com.project.code.service;
 import com.project.code.domain.entity.Product;
 import com.project.code.domain.entity.Store;
 import com.project.code.exception.ResourceAlreadyExistsException;
-import com.project.code.exception.StoreNotFoundException;
+import com.project.code.exception.ResourceNotFoundException;
 import com.project.code.repository.InventoryRepository;
 import com.project.code.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class StoreService {
     public Store getStoreById(Long id){
         return storeRepository
                 .findById(id)
-                .orElseThrow(() -> new StoreNotFoundException("Store not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Store not found"));
     }
 
     public boolean storeExists(Long id){
@@ -36,7 +36,7 @@ public class StoreService {
 
     public List<Product> getAllProductsInStore(Long storeId){
         if (!storeRepository.existsById(storeId)) {
-            throw new StoreNotFoundException("Store not found");
+            throw new ResourceNotFoundException("Store not found");
         }
         return inventoryRepository.findProductsByStoreId(storeId);
     }

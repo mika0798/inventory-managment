@@ -3,7 +3,7 @@ package com.project.code.service;
 
 import com.project.code.domain.entity.Inventory;
 import com.project.code.domain.entity.Product;
-import com.project.code.exception.InventoryNotFoundException;
+import com.project.code.exception.ResourceNotFoundException;
 import com.project.code.repository.InventoryRepository;
 import com.project.code.repository.OrderDetailsRepository;
 import com.project.code.repository.ProductRepository;
@@ -43,7 +43,7 @@ public class ValidateService {
         return inventoryRepository.findByProductIdAndStoreId(
                 inventory.getProduct().getId(),
                 inventory.getStore().getId())
-                .orElseThrow(() -> new InventoryNotFoundException("Cannot find such inventory"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cannot find such inventory"));
 
     }
 }

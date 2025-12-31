@@ -3,9 +3,7 @@ package com.project.code.service;
 import com.project.code.domain.dto.PlaceOrderRequest;
 import com.project.code.domain.dto.PurchaseProductDto;
 import com.project.code.domain.entity.*;
-import com.project.code.exception.InventoryNotFoundException;
-import com.project.code.exception.ProductNotFoundException;
-import com.project.code.exception.StoreNotFoundException;
+import com.project.code.exception.ResourceNotFoundException;
 import com.project.code.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,7 +35,7 @@ public class OrderService {
         // Retrieve the store
         Store store = storeRepository
                 .findById(placeOrderRequest.storeId())
-                .orElseThrow(() -> new StoreNotFoundException("Store not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Store not found"));
 
         // Create OrderDetails
         OrderDetails order = new OrderDetails();
@@ -58,7 +56,7 @@ public class OrderService {
                     .findByProductIdAndStoreId(
                     productRequest.id(),
                     store.getId()
-                    ).orElseThrow(() -> new InventoryNotFoundException("Inventory not found"));
+                    ).orElseThrow(() -> new ResourceNotFoundException("Inventory not found"));
 
             inventory.setStockLevel(inventory.getStockLevel() - productRequest.quantity());
 
@@ -66,7 +64,7 @@ public class OrderService {
             purchasedItem.setOrderDetails(order);
             Product theProduct = productRepository
                     .findById(productRequest.id())
-                    .orElseThrow(() -> new ProductNotFoundException("Product not found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
             purchasedItem.setProduct(theProduct);
             purchasedItem.setQuantity(productRequest.quantity());
             purchasedItem.setPrice(productRequest.price()*productRequest.quantity());
